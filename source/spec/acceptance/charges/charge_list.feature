@@ -2,8 +2,7 @@
 Feature: View details of Charges
  As a user
  I want to able to view details of charges
-   
- 	@javascript
+
     Scenario: list all charges
       When I am at charges page
       Then I should see list of "10" successful charges 
