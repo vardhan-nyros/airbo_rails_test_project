@@ -1,0 +1,50 @@
+<%- model_class = Charge -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+</div>
+
+
+<table class="table  table-bordered">
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr >
+      <td colspan="5"><h1> Successful Charges </h1></td>
+    </tr>
+    <% @successful_charges.each do |charge| %>
+      <tr class="suc">
+        <%= render :partial => 'success' , :locals => {:charge => charge} %>
+      </tr>
+    <% end %>
+
+    <tr >
+      <td colspan="5"><h1> Failed Charges </h1></td>
+    </tr>
+
+    <% @failed_charges.each do |charge| %>
+      <tr class="failed">
+        <%= render :partial => 'failed' , :locals => {:charge => charge} %>
+      </tr>
+    <% end %>
+    <tr >
+      <td colspan="5"><h1> Dispute Charges </h1></td>
+    </tr>
+
+    <% @dispute_charges.each do |charge| %>
+      <tr class="dispute">
+        <%= render :partial => 'dispute' , :locals => {:charge => charge} %>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_charge_path,
+            :class => 'btn btn-primary' %>
